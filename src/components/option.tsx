@@ -1,4 +1,4 @@
-import { ChangeEventHandler, Dispatch, SetStateAction } from "react"
+import { ChangeEvent, ChangeEventHandler, Dispatch, SetStateAction } from "react"
 
 
 export default function Option (props: {
@@ -9,18 +9,19 @@ export default function Option (props: {
 
     const options = props.config.map(con => {
         if(typeof con == 'string') {
-            return <option value={con}>
+            return <option value={con} key={`${con}-options`}>
             {con}
             </option>
         } else {
-            return <option value={con.value ?? con.text}>
+            return <option value={con.value ?? con.text} key={`${con.text}-options`}>
             {con.text}
             </option>
         }
     })
 
     return (
-        <select value={props.value} onChange={props.onChange}>
+        
+        <select value={props.value} onChange={props.onChange} className="rounded-full md:mx-3 text-3xl">
             {options}
         </select>
     )

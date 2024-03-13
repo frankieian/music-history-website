@@ -1,7 +1,8 @@
 import { apiRoutes, apiTypes } from "@/const/constant";
-import axios from "axios"
+import axios, { AxiosInstance } from "axios"
 import { cookies } from "next/headers";
 import { getAuthToken } from "./cookie";
+import { axiosApiInstance } from "./axios";
 
 export async function getAccount() {
     const token = getAuthToken()
@@ -28,23 +29,26 @@ export async function getAccount() {
 }
 
 
-export async function getSongSummary() {
+export async function getSongSummary(option: string, notUseInstance?: boolean) {
     const token = getAuthToken()
     const dateNow = new Date()
     const dateFrom = new Date()
-    dateFrom.setMonth(dateNow.getMonth() - 1)
+    if(option == 'Month') dateFrom.setMonth(dateNow.getMonth() - 1)
+    if(option == 'Week') dateFrom.setDate(dateNow.getDate() - 7)
+    if(option == 'Day') dateFrom.setDate(dateNow.getDate() - 1)
 
     try {
-        let response = await axios.get(process.env.API_URL + apiRoutes.get.userSongSummary, {
+        let response = await  (notUseInstance ? axios :axiosApiInstance).get(process.env.API_URL + apiRoutes.get.userSongSummary, {
             headers: {
-                Authorization: token.token,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: token.token
             },
             data: {
                 "pageSize": 3,
                 "page": 1,
                 "dateFrom": dateFrom.toISOString(),
-                "dateTo": dateNow.toISOString()
+                "dateTo": dateNow.toISOString(),
+                
             }
         })
 
@@ -62,17 +66,18 @@ export async function getSongSummary() {
     }
 }
 
-export async function getArtistSummary() {
+export async function getArtistSummary(option: string, notUseInstance?: boolean) {
     const token = getAuthToken()
     const dateNow = new Date()
     const dateFrom = new Date()
-    dateFrom.setMonth(dateNow.getMonth() - 1)
-
+    if(option == 'Month') dateFrom.setMonth(dateNow.getMonth() - 1)
+    if(option == 'Week') dateFrom.setDate(dateNow.getDate() - 7)
+    if(option == 'Day') dateFrom.setDate(dateNow.getDate() - 1)
     try {
-        let response = await axios.get(process.env.API_URL + apiRoutes.get.userArtistSummary, {
+        let response = await (notUseInstance ? axios :axiosApiInstance).get(process.env.API_URL + apiRoutes.get.userArtistSummary, {
             headers: {
-                Authorization: token.token,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: token.token
             },
             data: {
                 "pageSize": 3,

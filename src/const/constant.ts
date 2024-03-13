@@ -6,12 +6,20 @@ export const webRoutes = {
     dashboard: '/dashboard'
 }
 
+export enum dashboardFilterOptions {
+    'Day' = 'Day',
+    'Week' = 'Week',
+    'Month' = 'Month',
+}
 
+export const dashboardFilters = Object.keys(dashboardFilterOptions)
+export const dashboardFilterDefault = dashboardFilterOptions.Month
 
 export const apiRoutes = {
     post: {
         login: '/auth/login',
-        refresh_token: '/auth/refresh-token'
+        refresh_token: '/auth/refresh-token',
+        revoke_token: '/auth/revoke-token'
     },
     get: {
         user: '/user',

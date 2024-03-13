@@ -1,15 +1,13 @@
-
-
 export default function Heading(props: {
     text: string, 
     option?: JSX.Element,
     rightText?: string
 }) {
     return (
-        <div className="flex justify-center">
-            <h1 className="text-3xl font-bold text-center text-wrap pb-3">{props.text}</h1>
-            {props.option}
-            {props.rightText && <h1 className="text-3xl font-bold text-center text-wrap pb-3">{props.rightText}</h1>}
+        <div className="md:flex justify-center items-center pb-3">
+            <h1 className="text-3xl font-bold text-center text-wrap">{props.text}</h1>
+            <div className="w-full flex justify-center md:w-fit">{props.option}</div>
+            {props.rightText && <h1 className="text-3xl font-bold text-center text-wrap">{props.rightText}</h1>}
         </div>
     )
 }

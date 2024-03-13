@@ -17,8 +17,10 @@ export default function Form(props: {
     footNote?: string,
     formAction: (prevState: any, formData:FormData) => Promise<{message:string}>
 }) {
-    const [state, formAction] = useFormState(props.formAction, initialState)
-
+    const [state, formAction] = useFormState(props.formAction,  {
+        message: '',
+    } as any)
+    console.log(state)
     const formInputs = props.fields.map(field => 
         <div className="text-left">
             <label className="text-left text-xl">{field.label}</label><br></br>

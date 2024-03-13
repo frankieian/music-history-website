@@ -12,10 +12,10 @@ export default function Grid (props: {
     
 }){
 
-    const gridItems: JSX.Element[] = []
+    //const gridItems: JSX.Element[] = []
 
     //Goes through config and will return string OR image
-    props.config.forEach((config, index) => {
+    const gridItems: JSX.Element[] = props.config.map((config, index) => {
         let item: JSX.Element
         //Grab span for each element
         let span = props.span[index % props.span.length]
@@ -23,15 +23,15 @@ export default function Grid (props: {
             item = <p className={`col-span-${span} place-self-start self-center`}>{config}</p>
         } else if (config?.alt && config?.src) {
             let newConfig = {...config, className: `col-span-${span}`}
-            item =  <ImageWrap {...newConfig}/>
+            item =  <ImageWrap {...newConfig} key={`col-${index}-image`}/>
         } else {
             item = <div></div>
         }
-        gridItems.push(item)
+        return item
     })
 
     return (
-        <div className={`grid grid-cols-${props.columns} gap-4 w-full max-w-96 justify-items-center text-xl font-semibold m-auto`}>
+        <div className={`grid grid-cols-${props.columns} gap-4 w-full max-w-96 text-xl font-semibold m-auto`}>
             {gridItems}
         </div>
     )

@@ -8,6 +8,7 @@ import { Inter, Nunito } from 'next/font/google'
 
 import NavBar from '@/components/navBar'
 import Footer from '@/components/footer'
+import { getAuthToken } from '@/lib/cookie'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -25,14 +26,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  let tokens = getAuthToken()
+  let isLoggedIn = !!tokens.refreshToken
+
   return (
+    
+
     <html lang="en">
       <body className={`${nunito.className}`}>
         {/** Screen wrapper. Must always be height of screen */}
         <div className='relative min-h-screen'>
           <div className='pb-14'>
             {/** NavBar */}
-            <NavBar/>
+            <NavBar loggedIn={isLoggedIn}/>
             {/**Main body*/}
             <main>{children}</main>
           </div>

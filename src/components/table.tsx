@@ -4,21 +4,21 @@
 export default function Table (props: {
     tableHeadings: string[]
     tableDataFormat: string[]
-    tableData: object[]
+    tableData: object[],
+    tableName: string
 }){
-    const tableName = 'border border-black p-1'
+    const rowClassName = 'border border-black p-1'
 
-    const tableHead = props.tableHeadings.map(head => <th className={tableName}>{head}</th>)
-    const tableRows = props.tableData.map((data:any) => 
-        <tr className={tableName}>
+    const tableHead = props.tableHeadings.map((head, index) => <th className={rowClassName} key={props.tableName + '_head_' + index}>{head}</th>)
+    const tableRows = props.tableData.map((data:any, index) => 
+        <tr className={rowClassName} key={props.tableName + '_row_' + index}>
             {
-                props.tableDataFormat.map(format => <td className={tableName}>{data[format] ?? ''}</td>)
+                props.tableDataFormat.map((format, index) => <td key={props.tableName + '_col_' + index} className={rowClassName}>{data[format] ?? ''}</td>)
             }
         </tr>
     )
-
     return (
-        <table className="text-xl table-auto border-collapse border-spacing-2 border-2 border-slate-950 my-10">
+        <table className="text-xl table-auto border-collapse border-spacing-2 border-2 border-slate-950 md:w-full">
             <thead>
                 <tr>{tableHead}</tr>
             </thead>

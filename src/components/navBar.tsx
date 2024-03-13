@@ -7,16 +7,28 @@ import Logo from './navigation/logo'
 import MenuBar from './navigation/menuBar'
 import SideBar from './navigation/sideBar'
 import { usePathname } from 'next/navigation'
+import { logoutAccount } from '@/actions/account'
+import button from './button'
 
 
 
-export default function NavBar() {
+export default function NavBar(props: {loggedIn: boolean}) {
       const [isOpen, setIsOpen] = useState(false)
       const pathname = usePathname()
+      const loggedIn = props.loggedIn
 
       const toggle = () => {
         setIsOpen(!isOpen)
       }
+
+      const handleLogout = async () => {
+        localStorage.clear();
+        await logoutAccount();
+    };
+
+      const loggedInSpecific = [
+        <Button type='button' className='bg-blue-500' onClick={handleLogout} buttonText='Logout'  key={'Logout'}/>
+      ]
 
       const navBarItems = {
         left: [
@@ -24,10 +36,10 @@ export default function NavBar() {
           <Link className='text-xl px-3 ' href={'/dashboard'} key={'Dashboard'}>Dashboard</Link>,
           <Link className='text-xl px-3' href={'/about'} key={'About'}>About</Link>
         ],
-        right: [
-          <Button className='bg-blue-500' buttonText='Login' link='/login' key={'Login'}/>,
-          <Button buttonText='Register' link='/register' key={'Register'}/>
-        ]
+        right: !loggedIn ? [
+          <Button type='link' className='bg-blue-500' buttonText='Login' link='/login' key={'Login'}/>,
+          <Button type='link' buttonText='Register' link='/register' key={'Register'}/>
+        ] : loggedInSpecific
       }
 
   return (
