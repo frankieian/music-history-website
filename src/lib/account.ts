@@ -30,7 +30,6 @@ export async function getAccount() {
 
 
 export async function getSongSummary(option: string, notUseInstance?: boolean) {
-    const token = getAuthToken()
     const dateNow = new Date()
     const dateFrom = new Date()
     if(option == 'Month') dateFrom.setMonth(dateNow.getMonth() - 1)
@@ -41,7 +40,6 @@ export async function getSongSummary(option: string, notUseInstance?: boolean) {
         let response = await  (notUseInstance ? axios :axiosApiInstance).get(process.env.API_URL + apiRoutes.get.userSongSummary, {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token.token
             },
             data: {
                 "pageSize": 3,
@@ -67,7 +65,6 @@ export async function getSongSummary(option: string, notUseInstance?: boolean) {
 }
 
 export async function getArtistSummary(option: string, notUseInstance?: boolean) {
-    const token = getAuthToken()
     const dateNow = new Date()
     const dateFrom = new Date()
     if(option == 'Month') dateFrom.setMonth(dateNow.getMonth() - 1)
@@ -77,7 +74,6 @@ export async function getArtistSummary(option: string, notUseInstance?: boolean)
         let response = await (notUseInstance ? axios :axiosApiInstance).get(process.env.API_URL + apiRoutes.get.userArtistSummary, {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token.token
             },
             data: {
                 "pageSize": 3,

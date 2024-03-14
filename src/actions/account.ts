@@ -97,7 +97,7 @@ export async function refreshAccessToken() {
 }
 
 export async function logoutAccount() {
-    let tokens = getAuthToken()
+    let refreshToken = cookies().get('music_history_refresh')
     try {
         let response = await fetch(
             process.env.API_URL + apiRoutes.post.revoke_token,
@@ -105,7 +105,7 @@ export async function logoutAccount() {
                 method: apiTypes.post,
                 headers: {
                     "Content-Type": "application/json",
-                    Cookie: `music_history_refresh=${tokens.refreshToken}`
+                    Cookie: `music_history_refresh=${refreshToken}`
                 }
             }
         )

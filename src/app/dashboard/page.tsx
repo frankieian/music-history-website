@@ -9,10 +9,12 @@ import { artistSummaryAccount, songSummaryAccount } from "@/actions/account"
 import { dashboardFilterDefault } from "@/const/constant"
 
 export default async function dashboard() {
-    //let songSummary = await songSummaryAccount(dashboardFilterDefault, true) ?? {}
-    //let artistSummary = await artistSummaryAccount(dashboardFilterDefault, true) ?? {}
-    //let errorMessage = songSummary.message ?? artistSummary.message
-    let errorMessage = ''
+    let songSummary = await songSummaryAccount(dashboardFilterDefault) ?? {}
+    let artistSummary = await artistSummaryAccount(dashboardFilterDefault) ?? {}
+    let errorMessage = songSummary?.message ?? artistSummary?.message ?? ''
+    //let errorMessage = ''
+    //const resData = await data.json()
+    //console.log(resData)
 
     return (
         <div>
@@ -21,7 +23,7 @@ export default async function dashboard() {
                 <p className="text-xl">Some error has occured and we cannot connect to the server. Sorry!</p>
             </Container>
             :
-            <UserSummary/>
+            <UserSummary initialArtistSummary={artistSummary} initialSongSummary={songSummary}/>
             }
         </div>
     )

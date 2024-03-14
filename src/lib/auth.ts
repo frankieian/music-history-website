@@ -6,6 +6,9 @@ import { apiRoutes } from "@/const/constant";
 export const refreshToken = async () => {
     const token = getAuthToken()
     try {
+        if(!token.refreshToken) {
+            return {success: false, message: 'No refresh token found'}
+        }
         let cookie = `music_history_refresh=${token.refreshToken}`
         let response = await fetch(
             process.env.API_URL + apiRoutes.post.refresh_token, 

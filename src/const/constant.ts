@@ -6,6 +6,8 @@ export const webRoutes = {
     dashboard: '/dashboard'
 }
 
+export const webURL = process.env.WEB_URL
+
 export enum dashboardFilterOptions {
     'Day' = 'Day',
     'Week' = 'Week',

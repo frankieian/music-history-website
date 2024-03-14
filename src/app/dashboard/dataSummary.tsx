@@ -11,38 +11,38 @@ import { redirect, useRouter } from "next/navigation"
 import Cookies from 'js-cookie'
 
 export default function UserSummary (props: {
-    //initialSongSummary: any,
-    //initialArtistSummary: any
+    initialSongSummary: any,
+    initialArtistSummary: any
 }) {
     const [isPending, startTransition] = useTransition();
 
     const [filterOption, setFilterOption] = useState(dashboardFilterDefault)
-    const [songSummary, setSongSummary] =  useState({totalCount: '-', items: '-'} as any) //useState(props.initialSongSummary)//useState({totalCount: '-', items: '-'} as any)
-    const [artistSummary, setArtistSummary] = useState({items: '-'} as any)//useState(props.initialArtistSummary) //useState({items: '-'} as any)
+    const [songSummary, setSongSummary] =  useState(props.initialSongSummary)//useState({totalCount: '-', items: '-'} as any)
+    const [artistSummary, setArtistSummary] = useState(props.initialArtistSummary) //useState({items: '-'} as any)
 
-    async function getData(filterOption: string) {
-        console.log('run get data')
-        let artistAction = await artistSummaryAccount(filterOption)
-        let songAction = await songSummaryAccount(filterOption)
-        
-        let errorMessage = artistAction.message ?? songAction.message
-
-        if(errorMessage) {
-            alert(errorMessage)
-        }
-
-        //If no response i.e tokens expired then redirect to login
-        if(artistAction == undefined || songAction == undefined) {
-            redirect('/login')
-        }
-
-        setSongSummary(songAction ?? {})
-        setArtistSummary(artistAction ?? {})
-    }
+    //async function getData(filterOption: string) {
+    //    console.log('run get data')
+    //    let artistAction = await artistSummaryAccount(filterOption)
+    //    let songAction = await songSummaryAccount(filterOption)
+    //    
+    //    let errorMessage = artistAction.message ?? songAction.message
+//
+    //    if(errorMessage) {
+    //        alert(errorMessage)
+    //    }
+//
+    //    //If no response i.e tokens expired then redirect to login
+    //    if(artistAction == undefined || songAction == undefined) {
+    //        redirect('/login')
+    //    }
+//
+    //    setSongSummary(songAction ?? {})
+    //    setArtistSummary(artistAction ?? {})
+    //}
 
 
     useEffect(() => {
-        getData(filterOption)
+       // getData(filterOption)
     }, [])
 
     
