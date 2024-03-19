@@ -27,26 +27,23 @@ export default function TopData (props: {
         tableData={props.artistData?.data ?? []}
         tableName="top_artist"
     />
-    //const topSongs = (props.songData?.data ?? []).map((song:any) => <p className="text-2xl py-2 font-semibold">{song.count} x {song.songName}</p>)
 
-    //const topArtists = (props.artistData?.data ?? []).map((artist:any) => <p className="text-2xl py-2 font-semibold">{artist.count} x {artist.name}</p>)
-    //md:flex justify-center m-auto w-11/12 md:w-1/2 h-fit
     return (
         
         <div className="">
             <Container 
-                className="bg-[#60aab3]"
+                className="bg-[#D0D7EF]"
                 >
                     <div>
-                        <Heading text="Top songs"/>
+                        <Heading text="Your top songs were" className="text-[#187F6C]"/>
                         {songTable}
                     </div>
             </Container>
             <Container 
-                className="bg-[#95baed]"
+                className="bg-[#7FBAFF]"
                 >
                     <div>
-                    <Heading text="Top artists"/>
+                    <Heading text="Your top artists were" className="text-[#375152]"/>
                     {artistTable}
                     </div>
             </Container>

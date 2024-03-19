@@ -17,34 +17,8 @@ export default function UserSummary (props: {
     const [isPending, startTransition] = useTransition();
 
     const [filterOption, setFilterOption] = useState(dashboardFilterDefault)
-    const [songSummary, setSongSummary] =  useState(props.initialSongSummary)//useState({totalCount: '-', items: '-'} as any)
-    const [artistSummary, setArtistSummary] = useState(props.initialArtistSummary) //useState({items: '-'} as any)
-
-    //async function getData(filterOption: string) {
-    //    console.log('run get data')
-    //    let artistAction = await artistSummaryAccount(filterOption)
-    //    let songAction = await songSummaryAccount(filterOption)
-    //    
-    //    let errorMessage = artistAction.message ?? songAction.message
-//
-    //    if(errorMessage) {
-    //        alert(errorMessage)
-    //    }
-//
-    //    //If no response i.e tokens expired then redirect to login
-    //    if(artistAction == undefined || songAction == undefined) {
-    //        redirect('/login')
-    //    }
-//
-    //    setSongSummary(songAction ?? {})
-    //    setArtistSummary(artistAction ?? {})
-    //}
-
-
-    useEffect(() => {
-       // getData(filterOption)
-    }, [])
-
+    const [songSummary, setSongSummary] =  useState(props.initialSongSummary)
+    const [artistSummary, setArtistSummary] = useState(props.initialArtistSummary)
     
     const onChange = (e: ChangeEvent<any>) => {
         setFilterOption(e.target.value)
@@ -76,7 +50,7 @@ export default function UserSummary (props: {
                 className="bg-[#A8C7CD]"
                 >
                     <div>
-                    <Heading text="This" option={option} rightText="you played"/>
+                    <Heading text="This" option={option} rightText="you played" className=""/>
 
                         <div className="grid w-full grid-cols-4">
                             <div className="flex col-span-4 lg:col-span-2">

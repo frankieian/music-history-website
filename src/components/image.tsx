@@ -7,6 +7,7 @@ export default function ImageWrap (props: {
     width?: number,
     height?: number
     className: string,
+    key:string
 }) {
     return (
         <Image
@@ -15,6 +16,7 @@ export default function ImageWrap (props: {
             className={`${props.className}`}
             width={props.width ?? 100}
             height={props.height ?? 100}
+            key={props.key}
             priority
         />
     )

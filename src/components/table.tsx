@@ -18,7 +18,7 @@ export default function Table (props: {
         </tr>
     )
     return (
-        <table className="text-xl table-auto border-collapse border-spacing-2 border-2 border-slate-950 md:w-full">
+        <table className="text-xl table-auto md:w-full">
             <thead>
                 <tr>{tableHead}</tr>
             </thead>
