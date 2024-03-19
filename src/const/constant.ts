@@ -20,6 +20,7 @@ export const dashboardFilterDefault = dashboardFilterOptions.Month
 export const apiRoutes = {
     post: {
         login: '/auth/login',
+        spotifyLogin: '/auth/login/spotify',
         refresh_token: '/auth/refresh-token',
         revoke_token: '/auth/revoke-token'
     },

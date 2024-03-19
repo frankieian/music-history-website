@@ -37,8 +37,7 @@ export default function NavBar(props: {loggedIn: boolean}) {
           <Link className='text-xl px-3' href={'/about'} key={'About'}>About</Link>
         ],
         right: !loggedIn ? [
-          <Button type='link' className='bg-blue-500' buttonText='Login' link='/login' key={'Login'}/>,
-          <Button type='link' buttonText='Register' link='/register' key={'Register'}/>
+          <Button type='link' className='bg-blue-500' buttonText='Login' link='/login' key={'Login'}/>
         ] : loggedInSpecific
       }
 
