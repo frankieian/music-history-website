@@ -6,6 +6,12 @@ export const webRoutes = {
     dashboard: '/dashboard'
 }
 
+export const containerColours = {
+    first: 'bg-[#A8C7CD]',
+    second: 'bg-[#D0D7EF]',
+    third: 'bg-[#f6cffd]'
+}
+
 export const webURL = process.env.WEB_URL
 
 export enum dashboardFilterOptions {

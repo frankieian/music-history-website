@@ -5,7 +5,7 @@ import { ChangeEvent, useEffect, useState, useTransition } from "react"
 import Option from "@/components/option"
 import Container from "@/components/container"
 import { artistSummaryAccount, songSummaryAccount } from "@/actions/account"
-import { dashboardFilters, dashboardFilterDefault } from "@/const/constant"
+import { dashboardFilters, dashboardFilterDefault, containerColours } from "@/const/constant"
 import Table from "@/components/table"
 
 
@@ -32,7 +32,7 @@ export default function TopData (props: {
         
         <div className="">
             <Container 
-                className="bg-[#D0D7EF]"
+                className={`${containerColours.second}`}
                 >
                     <div>
                         <Heading text="Your top songs were" className="text-[#187F6C]"/>
@@ -40,7 +40,7 @@ export default function TopData (props: {
                     </div>
             </Container>
             <Container 
-                className="bg-[#7FBAFF]"
+                className={`${containerColours.third}`}
                 >
                     <div>
                     <Heading text="Your top artists were" className="text-[#375152]"/>

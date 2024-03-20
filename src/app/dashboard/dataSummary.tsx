@@ -5,7 +5,7 @@ import { ChangeEvent, useEffect, useState, useTransition } from "react"
 import Option from "@/components/option"
 import Container from "@/components/container"
 import { artistSummaryAccount, songSummaryAccount } from "@/actions/account"
-import { dashboardFilters, dashboardFilterDefault } from "@/const/constant"
+import { dashboardFilters, dashboardFilterDefault, containerColours } from "@/const/constant"
 import TopData from "./topData"
 import { redirect, useRouter } from "next/navigation"
 import Cookies from 'js-cookie'
@@ -47,7 +47,7 @@ export default function UserSummary (props: {
     return (
         <div className="justify-around">
             <Container 
-                className="bg-[#A8C7CD]"
+                className={`${containerColours.first}`}
                 >
                     <div>
                     <Heading text="This" option={option} rightText="you played" className=""/>

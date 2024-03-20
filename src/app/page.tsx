@@ -1,5 +1,6 @@
 import Container from '@/components/container'
 import Grid from '@/components/grid'
+import { containerColours } from '@/const/constant'
 
 export default function Home() {
 
@@ -24,7 +25,7 @@ export default function Home() {
   return (
     <div className='flex flex-col'>
       {/** First Part / Middle Part */}
-      <Container className='bg-[#A8C7CD]'>
+      <Container className={`${containerColours.first}`}>
         <p className='w-full text-xl'>
           Welcome to Bored Tea’s Spotify History Application. This application automatically 
           retrieves the last recently played songs and stores them in the database. 
@@ -33,7 +34,7 @@ export default function Home() {
           you played this month!
         </p>
       </Container>
-      <Container className='bg-[#D0D7EF]' heading='Features'>
+      <Container className={`${containerColours.second}`} heading='Features'>
         <Grid columns={3} span={[1,2]} config={gridConfig}/>
       </Container>
     </div>
