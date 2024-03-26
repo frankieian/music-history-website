@@ -20,9 +20,9 @@ export default function Form(props: {
     const [state, formAction] = useFormState(props.formAction,  {
         message: '',
     } as any)
-    console.log(state)
+
     const formInputs = props.fields.map(field => 
-        <div className="text-left">
+        <div className="text-left" key={field.name}>
             <label className="text-left text-xl">{field.label}</label><br></br>
             <input className="border border-black rounded-md pl-2 w-full h-[40px]" type="text" name={field.name}/>
             {state[field.name] && <p className="w-fit text-wrap text-sm m-auto">{state[field.name]}</p>}

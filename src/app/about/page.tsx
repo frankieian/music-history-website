@@ -15,7 +15,7 @@ export default function About() {
               </p>
               <h1 className='text-2xl font-semibold pt-5'>How does it do it?</h1>
               <p className='text-xl'>
-                This application uses AWS Lambda to retrieve your last recently played songs using Spotify's APIs. We pull the data every 1 hour.
+                This application uses AWS Lambda to retrieve your last recently played songs using Spotify&apos;s APIs. We pull the data every 1 hour.
                 If there is new listening history we record it in our database
               </p>
             </div>
