@@ -58,7 +58,7 @@ export async function getServerTokens() {
 
 export async function getSummary(option: string, notUseInstance?: boolean) {
     try {
-        console.log('get summary data')
+        console.log('get summary data combined')
         let data = await Promise.all([
             getSongSummary(option, notUseInstance), 
             getArtistSummary(option, notUseInstance)
