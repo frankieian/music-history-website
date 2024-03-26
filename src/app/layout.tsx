@@ -18,7 +18,7 @@ const nunito = Nunito({
 //h-[calc(100vh-11.5rem)]
 export const metadata: Metadata = {
   title: 'Music History',
-  description: 'Statistics for your music history',
+  description: 'Statistics for your music history'
 }
 
 export default function RootLayout({
