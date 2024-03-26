@@ -4,7 +4,7 @@ import Heading from "@/components/heading"
 import { ChangeEvent, useEffect, useState, useTransition } from "react"
 import Option from "@/components/option"
 import Container from "@/components/container"
-import { artistSummaryAccount, songSummaryAccount } from "@/actions/account"
+import { getSummary } from "@/actions/account"
 import { dashboardFilters, dashboardFilterDefault, containerColours } from "@/const/constant"
 import TopData from "./topData"
 import { redirect, useRouter } from "next/navigation"
@@ -23,8 +23,9 @@ export default function UserSummary (props: {
     const onChange = (e: ChangeEvent<any>) => {
         setFilterOption(e.target.value)
         startTransition(async () => {
-            let artistAction = await artistSummaryAccount(e.target.value)
-            let songAction = await songSummaryAccount(e.target.value)
+            let data = await getSummary(e.target.value)
+            let artistAction = data.artist
+            let songAction = data.song
             
             let errorMessage = artistAction.message ?? songAction.message
 

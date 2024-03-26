@@ -30,7 +30,7 @@ export async function refreshAccessToken() {
 export async function logoutAccount() {
     let refreshToken = cookies().get('music_history_refresh')
     try {
-        let response = await fetch(
+        let response = fetch(
             process.env.API_URL + apiRoutes.post.revoke_token,
             {
                 method: apiTypes.post,
@@ -40,10 +40,6 @@ export async function logoutAccount() {
                 }
             }
         )
-        if (!response.ok) {
-            const err = await response.json()
-            throw new Error(err?.error ?? "Network response was not OK");
-        }
     } catch (e:any) {
     }
 
@@ -60,24 +56,18 @@ export async function getServerTokens() {
 }
 
 
-export async function songSummaryAccount(option: string, notUseInstance?: boolean) {
+export async function getSummary(option: string, notUseInstance?: boolean) {
     try {
-        console.log('songSummaryAccount')
-        let data = await getSongSummary(option, notUseInstance)
+        console.log('get summary data')
+        let data = await Promise.all([
+            getSongSummary(option, notUseInstance), 
+            getArtistSummary(option, notUseInstance)
+        ])
 
-        return data
-    } catch (e:any) {
-        return { message: e?.message ?? "Could not login" };
-    }
-}
-
-export async function artistSummaryAccount(option: string, notUseInstance?: boolean) {
-    try {
-        console.log('artistSummaryAccount')
-
-        let data = await getArtistSummary(option, notUseInstance)
-
-        return data
+        return {
+            song: data[0],
+            artist: data[1]
+        }
     } catch (e:any) {
         return { message: e?.message ?? "Could not login" };
     }

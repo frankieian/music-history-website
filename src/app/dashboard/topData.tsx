@@ -4,7 +4,6 @@ import Heading from "@/components/heading"
 import { ChangeEvent, useEffect, useState, useTransition } from "react"
 import Option from "@/components/option"
 import Container from "@/components/container"
-import { artistSummaryAccount, songSummaryAccount } from "@/actions/account"
 import { dashboardFilters, dashboardFilterDefault, containerColours } from "@/const/constant"
 import Table from "@/components/table"
 

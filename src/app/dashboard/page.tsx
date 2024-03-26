@@ -5,12 +5,13 @@ import Option from "@/components/option"
 import Table from "@/components/table"
 import { getSongSummary, getArtistSummary } from "@/lib/account"
 import UserSummary from "./dataSummary"
-import { artistSummaryAccount, songSummaryAccount } from "@/actions/account"
+import { getSummary } from "@/actions/account"
 import { dashboardFilterDefault } from "@/const/constant"
 
 export default async function dashboard() {
-    let songSummary = await songSummaryAccount(dashboardFilterDefault) ?? {}
-    let artistSummary = await artistSummaryAccount(dashboardFilterDefault) ?? {}
+    let data = await getSummary(dashboardFilterDefault) ?? {}
+    let songSummary = data.song ?? {}
+    let artistSummary = data.artist ?? {}
     let errorMessage = songSummary?.message ?? artistSummary?.message ?? ''
     //let errorMessage = ''
     //const resData = await data.json()
