@@ -36,7 +36,7 @@ export async function logoutAccount() {
                 method: apiTypes.post,
                 headers: {
                     "Content-Type": "application/json",
-                    Cookie: `music_history_refresh=${refreshToken}`
+                    Cookie: `music_history_refresh=${refreshToken?.value}`
                 }
             }
         )
