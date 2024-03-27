@@ -18,8 +18,8 @@ export default async function SongHistory (props: {
     })
 
     const songTable = <Table 
-        tableHeadings={['Song Name', 'Artists', 'Played At']}
-        tableDataFormat={['song_name', 'artist_name', 'played_at']}
+        tableHeadings={['Played At', 'Song Name', 'Artists']}
+        tableDataFormat={['played_at', 'song_name', 'artist_name']}
         tableData={songData}
         tableName="history_song"
     />
