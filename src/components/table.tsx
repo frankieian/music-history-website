@@ -28,7 +28,7 @@ export default function TableWrapper (props: {
     console.log(tableRows)
 
     return (
-        <Table removeWrapper className="text-3xl table-auto md:w-full">
+        <Table className="text-3xl table-auto md:w-full">
             <TableHeader>
                 {tableHead}
             </TableHeader>
