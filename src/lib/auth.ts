@@ -41,22 +41,24 @@ export async function spotifyCallback(spotCode: string, spotState: string) {
         } else {
             cookies().set({
                 name: "music_history_token",
+                path: '/',
                 value: response.data.bearerToken.type + " " + response.data.bearerToken.token,
                 secure: true,
                 httpOnly: true,
-                sameSite: 'strict',
+                sameSite: 'lax',
                 expires: new Date(response.data.bearerToken.expiresIn * 1000)
             })
             cookies().set({
                 name: "music_history_refresh",
+                path: '/',
                 value: response.data.refreshToken.token,
                 secure: true,
                 httpOnly: true,
-                sameSite: 'strict',
+                sameSite: 'lax',
                 expires: new Date(response.data.refreshToken.expiresIn * 1000)
             })
             console.log("redirect to dashboard")
-            return'/dashboard'
+            return '/dashboard'
         }
         //If code is not valid, then redirect 
 
