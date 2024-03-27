@@ -34,6 +34,7 @@ export default function NavBar(props: {loggedIn: boolean}) {
         left: [
           <Link className='text-xl px-3' href={'/'} key={'Home'}>Home</Link>,
           <Link className='text-xl px-3 ' href={'/dashboard'} key={'Dashboard'}>Dashboard</Link>,
+          <Link className='text-xl px-3 ' href={'/history'} key={'History'}>History</Link>,
           <Link className='text-xl px-3' href={'/about'} key={'About'}>About</Link>
         ],
         right: !loggedIn ? [

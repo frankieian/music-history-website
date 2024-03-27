@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation';
 import { apiRoutes, apiTypes } from '@/const/constant';
-import { getArtistSummary, getSongSummary } from '@/lib/account';
+import { getArtistSummary, getSongHistory, getSongSummary } from '@/lib/account';
 import { getAuthToken } from '@/lib/cookie';
 import { refreshToken } from '@/lib/auth';
 
@@ -68,6 +68,17 @@ export async function getSummary(option: string, notUseInstance?: boolean) {
             song: data[0],
             artist: data[1]
         }
+    } catch (e:any) {
+        return { message: e?.message ?? "Could not login" };
+    }
+}
+
+
+export async function getHistory(option: string, pageSize:number, page:number, notUseInstance?: boolean) {
+    try {
+        console.log('get history data')
+        let data = await getSongHistory(option, pageSize, page, notUseInstance)
+        return data
     } catch (e:any) {
         return { message: e?.message ?? "Could not login" };
     }

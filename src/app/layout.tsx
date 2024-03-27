@@ -5,6 +5,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Nunito } from 'next/font/google'
+import {Providers} from "./providers";
 
 import NavBar from '@/components/navBar'
 import Footer from '@/components/footer'
@@ -34,17 +35,19 @@ export default function RootLayout({
 
     <html lang="en">
       <body className={`${nunito.className}`}>
+        <Providers>
         {/** Screen wrapper. Must always be height of screen */}
-        <div className='relative min-h-screen'>
-          <div className='pb-14'>
-            {/** NavBar */}
-            <NavBar loggedIn={isLoggedIn}/>
-            {/**Main body*/}
-            <main>{children}</main>
+          <div className='relative min-h-screen'>
+            <div className='pb-14'>
+              {/** NavBar */}
+              <NavBar loggedIn={isLoggedIn}/>
+              {/**Main body*/}
+              <main>{children}</main>
+            </div>
+            {/** Footer */}
+            <Footer/>
           </div>
-          {/** Footer */}
-          <Footer/>
-        </div>
+        </Providers>
       </body>
       
     </html>

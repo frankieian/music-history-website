@@ -23,6 +23,8 @@ export enum dashboardFilterOptions {
 export const dashboardFilters = Object.keys(dashboardFilterOptions)
 export const dashboardFilterDefault = dashboardFilterOptions.Month
 
+export const defaultPageSize = 20
+
 export const apiRoutes = {
     post: {
         login: '/auth/login',
@@ -33,7 +35,8 @@ export const apiRoutes = {
     get: {
         user: '/user',
         userSongSummary: '/user/stats/song',
-        userArtistSummary: '/user/stats/artist'
+        userArtistSummary: '/user/stats/artist',
+        history: '/user/history'
     }
 }
 

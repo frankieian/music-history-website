@@ -96,3 +96,36 @@ export async function getArtistSummary(option: string, notUseInstance?: boolean)
         return { message: e?.message ?? "Coult not obtain user data" };
     }
 }
+
+export async function getSongHistory(option: string, pageSize: number, page: number, notUseInstance?: boolean) {
+    const dateNow = new Date()
+    const dateFrom = new Date()
+    if(option == 'Month') dateFrom.setMonth(dateNow.getMonth() - 1)
+    if(option == 'Week') dateFrom.setDate(dateNow.getDate() - 7)
+    if(option == 'Day') dateFrom.setDate(dateNow.getDate() - 1)
+    try {
+        let response = await (notUseInstance ? axios :axiosApiInstance).get(process.env.API_URL + apiRoutes.get.history, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: {
+                "pageSize": pageSize,
+                "page": page,
+                "dateFrom": dateFrom.toISOString(),
+                "dateTo": dateNow.toISOString()
+            }
+        })
+
+        if (response.status != 200) {
+            const err = await response.data
+            throw new Error(err?.error ?? "Network response was not OK");
+        }
+
+        const result = await response.data
+
+        return result
+
+    } catch (e:any) {
+        return { message: e?.message ?? "Coult not obtain user data" };
+    }
+}
