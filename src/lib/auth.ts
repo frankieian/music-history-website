@@ -37,7 +37,7 @@ export async function spotifyCallback(spotCode: string, spotState: string) {
         })
         console.log(response.data)
         if(!response.data.bearerToken || !response.data.refreshToken) {
-            redirect('/')
+            redirect('/loginerror')
         } else {
             cookies().set({
                 name: "music_history_token",
@@ -66,7 +66,7 @@ export async function spotifyCallback(spotCode: string, spotState: string) {
       } catch(err) {
         console.log("redirect to err", err)
 
-        return '/'
+        return '/loginerror'
       }
     }
 }
